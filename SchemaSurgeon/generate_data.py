@@ -2,8 +2,8 @@
 generate_data.py
 ----------------
 One-time dataset generator for Schema Surgeon.
-Creates deterministic static task datasets in server/data and is never imported
-by runtime server modules.
+Builds deterministic, realistic e-commerce user records with nested objects
+and arrays, then applies task-specific schema drift patterns.
 """
 
 import copy
@@ -12,83 +12,154 @@ import random
 from pathlib import Path
 from typing import Any, Dict, List
 
+from faker import Faker
+
 SEED: int = 42
 NUM_DOCS: int = 50
 OUTPUT_DIR: Path = Path(__file__).resolve().parent / "server" / "data"
 
-GOLDEN_10_TASK1: List[Dict[str, Any]] = [
-    {"uid": "user_001", "age": 25, "price": 19.99, "version": "v1"},
-    {"u_id": "user_002", "age": 30, "price": 25.0, "version": "v2"},
-    {"user_id": "user_003", "age": 22, "price": 9.99, "version": "v1"},
-    {"uid": "user_004", "age": 45, "price": 50.0, "version": "v1"},
-    {"u_id": "user_005", "age": 19, "price": 5.5, "version": "v2"},
-    {"uid": "user_006", "age": 33, "price": 12.0, "version": "v1"},
-    {"user_id": "user_007", "age": 28, "price": 8.75, "version": "v2"},
-    {"u_id": "user_008", "age": 55, "price": 100.0, "version": "v1"},
-    {"uid": "user_009", "age": 41, "price": 60.0, "version": "v1"},
-    {"u_id": "user_010", "age": 37, "price": 33.3, "version": "v2"},
-]
+FAKER = Faker()
+Faker.seed(SEED)
+FAKER.seed_instance(SEED)
 
-GOLDEN_10_TASK2: List[Dict[str, Any]] = [
-    {"user_id": "user_001", "age": "25", "price": "19.99", "version": "v1"},
-    {"user_id": "user_002", "age": 30, "price": "25.0", "version": "v2"},
-    {"user_id": "user_003", "age": "22", "price": 9.99, "version": "v1"},
-    {"user_id": "user_004", "age": 45, "price": "50.0", "version": "v1"},
-    {"user_id": "user_005", "age": "19", "price": 5.5, "version": "v2"},
-    {"user_id": "user_006", "age": "33", "price": "12.0", "version": "v1"},
-    {"user_id": "user_007", "age": 28, "price": 8.75, "version": "v2"},
-    {"user_id": "user_008", "age": "55", "price": "100.0", "version": "v1"},
-    {"user_id": "user_009", "age": 41, "price": "60.0", "version": "v1"},
-    {"user_id": "user_010", "age": "37", "price": "33.3", "version": "v2"},
+PRODUCT_NAMES: List[str] = [
+    "wireless_mouse",
+    "noise_canceling_headphones",
+    "ergonomic_keyboard",
+    "smart_watch",
+    "gaming_monitor",
+    "usb_c_hub",
+    "portable_ssd",
+    "desk_lamp",
+    "webcam_hd",
+    "mechanical_switches",
 ]
+TIERS: List[str] = ["bronze", "silver", "gold", "platinum"]
 
-GOLDEN_10_TASK3: List[Dict[str, Any]] = [
-    {
-        "uid": "user_001",
-        "age": "25",
-        "price": "19.99",
-        "metadata": {"version": "v1"},
-    },
-    {
-        "u_id": "user_002",
-        "age": 30,
-        "price": "25.0",
-        "metadata": {"version": "v2"},
-    },
-    {"user_id": "user_003", "age": "22", "price": 9.99, "version": "v1"},
-    {
-        "uid": "user_004",
-        "age": 45,
-        "price": "50.0",
-        "metadata": {"version": "v1"},
-    },
-    {
-        "u_id": "user_005",
-        "age": "19",
-        "price": 5.5,
-        "metadata": {"version": "v2"},
-    },
-    {"uid": "user_006", "age": "33", "price": "12.0", "version": "v1"},
-    {
-        "user_id": "user_007",
-        "age": 28,
-        "price": 8.75,
-        "metadata": {"version": "v2"},
-    },
-    {
-        "u_id": "user_008",
-        "age": "55",
-        "price": "100.0",
-        "metadata": {"version": "v1"},
-    },
-    {"uid": "user_009", "age": 41, "price": "60.0", "version": "v1"},
-    {
-        "u_id": "user_010",
-        "age": "37",
-        "price": "33.3",
-        "metadata": {"version": "v2"},
-    },
-]
+def build_base_record(index: int) -> Dict[str, Any]:
+    """
+    Build a clean canonical e-commerce user record.
+
+    Args:
+        index: Document index used for deterministic user_id generation.
+
+    Returns:
+        Base record dictionary with nested contact_info and purchase_history.
+    """
+    purchases: List[Dict[str, Any]] = []
+    for _ in range(random.randint(2, 4)):
+        purchases.append(
+            {
+                "item": random.choice(PRODUCT_NAMES),
+                "cost": round(random.uniform(5.0, 500.0), 2),
+            }
+        )
+
+    total_spend = round(sum(entry["cost"] for entry in purchases), 2)
+
+    return {
+        "user_id": f"user_{index:03d}",
+        "age": random.randint(18, 80),
+        "lifetime_value": round(total_spend * random.uniform(1.05, 2.0), 2),
+        "tier": random.choice(TIERS),
+        "contact_info": {
+            "email": FAKER.email(),
+            "phone": FAKER.phone_number(),
+        },
+        "purchase_history": purchases,
+    }
+
+
+def apply_task1_drift(record: Dict[str, Any], force_pattern: int = -1) -> Dict[str, Any]:
+    """
+    Apply naming drift for task1.
+
+    Args:
+        record: Canonical base record.
+        force_pattern: Optional deterministic variant selector.
+
+    Returns:
+        Drifted record for task1.
+    """
+    doc = copy.deepcopy(record)
+    pattern = force_pattern if force_pattern >= 0 else random.randint(0, 2)
+    if pattern == 0:
+        doc["uid"] = doc.pop("user_id")
+    elif pattern == 1:
+        doc["u_id"] = doc.pop("user_id")
+    return doc
+
+
+def apply_task2_drift(record: Dict[str, Any], force_pattern: int = -1) -> Dict[str, Any]:
+    """
+    Apply type drift for task2 while preserving nested complexity.
+
+    Args:
+        record: Canonical base record.
+        force_pattern: Optional deterministic variant selector.
+
+    Returns:
+        Drifted record for task2.
+    """
+    doc = copy.deepcopy(record)
+    pattern = force_pattern if force_pattern >= 0 else random.randint(0, 2)
+    if pattern in (0, 2):
+        doc["age"] = str(doc["age"])
+    if pattern in (1, 2):
+        doc["lifetime_value"] = str(doc["lifetime_value"])
+    return doc
+
+
+def apply_task3_drift(record: Dict[str, Any], force_pattern: int = -1) -> Dict[str, Any]:
+    """
+    Apply combined naming, type, and structural drift for task3.
+
+    Args:
+        record: Canonical base record.
+        force_pattern: Optional deterministic variant selector.
+
+    Returns:
+        Drifted record for task3.
+    """
+    doc = copy.deepcopy(record)
+    pattern = force_pattern if force_pattern >= 0 else random.randint(0, 5)
+
+    if pattern in (0, 1, 4):
+        doc["uid"] = doc.pop("user_id")
+    elif pattern in (2, 3, 5):
+        doc["u_id"] = doc.pop("user_id")
+
+    if pattern in (0, 2, 5):
+        doc["age"] = str(doc["age"])
+    if pattern in (1, 3, 4):
+        doc["lifetime_value"] = str(doc["lifetime_value"])
+
+    if pattern in (0, 1, 2, 3):
+        doc["profile"] = {"tier": doc.pop("tier")}
+
+    return doc
+
+
+def build_golden_10(task_id: int) -> List[Dict[str, Any]]:
+    """
+    Build deterministic golden examples for each task.
+
+    Args:
+        task_id: Task number in [1, 2, 3].
+
+    Returns:
+        Ten representative records for the task.
+    """
+    golden: List[Dict[str, Any]] = []
+    for idx in range(1, 11):
+        base = build_base_record(idx)
+        if task_id == 1:
+            golden.append(apply_task1_drift(base, force_pattern=(idx - 1) % 3))
+        elif task_id == 2:
+            golden.append(apply_task2_drift(base, force_pattern=(idx - 1) % 3))
+        else:
+            golden.append(apply_task3_drift(base, force_pattern=(idx - 1) % 6))
+    return golden
 
 
 def generate_bulk(golden_10: List[Dict[str, Any]], task_id: int) -> List[Dict[str, Any]]:
@@ -102,39 +173,19 @@ def generate_bulk(golden_10: List[Dict[str, Any]], task_id: int) -> List[Dict[st
     Returns:
         List of exactly 50 documents.
     """
-    random.seed(SEED)
+    random.seed(SEED + task_id)
+    Faker.seed(SEED + task_id)
+    FAKER.seed_instance(SEED + task_id)
     docs = copy.deepcopy(golden_10)
 
     for idx in range(10, NUM_DOCS):
-        uid_key = random.choice(["uid", "u_id", "user_id"])
-        age_val = random.randint(18, 65)
-        price_val = round(random.uniform(1.0, 200.0), 2)
-
+        base = build_base_record(idx)
         if task_id == 1:
-            doc = {
-                uid_key: f"user_{idx:03d}",
-                "age": age_val,
-                "price": price_val,
-                "version": random.choice(["v1", "v2"]),
-            }
+            doc = apply_task1_drift(base)
         elif task_id == 2:
-            doc = {
-                "user_id": f"user_{idx:03d}",
-                "age": str(age_val) if random.random() < 0.3 else age_val,
-                "price": str(price_val) if random.random() < 0.3 else price_val,
-                "version": random.choice(["v1", "v2"]),
-            }
+            doc = apply_task2_drift(base)
         else:
-            version_val = random.choice(["v1", "v2"])
-            doc = {
-                uid_key: f"user_{idx:03d}",
-                "age": str(age_val) if random.random() < 0.3 else age_val,
-                "price": str(price_val) if random.random() < 0.3 else price_val,
-            }
-            if random.random() < 0.5:
-                doc["metadata"] = {"version": version_val}
-            else:
-                doc["version"] = version_val
+            doc = apply_task3_drift(base)
 
         docs.append(doc)
 
@@ -169,10 +220,18 @@ def main() -> None:
     Returns:
         None.
     """
+    random.seed(SEED)
+    Faker.seed(SEED)
+    FAKER.seed_instance(SEED)
+
+    golden_10_task1 = build_golden_10(task_id=1)
+    golden_10_task2 = build_golden_10(task_id=2)
+    golden_10_task3 = build_golden_10(task_id=3)
+
     datasets = {
-        "task1": generate_bulk(GOLDEN_10_TASK1, 1),
-        "task2": generate_bulk(GOLDEN_10_TASK2, 2),
-        "task3": generate_bulk(GOLDEN_10_TASK3, 3),
+        "task1": generate_bulk(golden_10_task1, 1),
+        "task2": generate_bulk(golden_10_task2, 2),
+        "task3": generate_bulk(golden_10_task3, 3),
     }
 
     for dataset_name, dataset_data in datasets.items():

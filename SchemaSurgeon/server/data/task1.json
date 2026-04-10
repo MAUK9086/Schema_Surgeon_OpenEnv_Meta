@@ -1,302 +1,1226 @@
 [
   {
-    "uid": "user_001",
-    "age": 25,
-    "price": 19.99,
-    "version": "v1"
+    "age": 45,
+    "lifetime_value": 606.18,
+    "tier": "bronze",
+    "contact_info": {
+      "email": "johnsonjoshua@example.org",
+      "phone": "(518)519-6001"
+    },
+    "purchase_history": [
+      {
+        "item": "noise_canceling_headphones",
+        "cost": 17.38
+      },
+      {
+        "item": "gaming_monitor",
+        "cost": 126.22
+      },
+      {
+        "item": "ergonomic_keyboard",
+        "cost": 369.55
+      },
+      {
+        "item": "webcam_hd",
+        "cost": 48.03
+      }
+    ],
+    "uid": "user_001"
   },
   {
-    "u_id": "user_002",
-    "age": 30,
-    "price": 25.0,
-    "version": "v2"
+    "age": 63,
+    "lifetime_value": 897.01,
+    "tier": "platinum",
+    "contact_info": {
+      "email": "hoffmanjennifer@example.net",
+      "phone": "+1-763-679-4026"
+    },
+    "purchase_history": [
+      {
+        "item": "smart_watch",
+        "cost": 255.15
+      },
+      {
+        "item": "wireless_mouse",
+        "cost": 282.82
+      }
+    ],
+    "u_id": "user_002"
   },
   {
     "user_id": "user_003",
-    "age": 22,
-    "price": 9.99,
-    "version": "v1"
-  },
-  {
-    "uid": "user_004",
-    "age": 45,
-    "price": 50.0,
-    "version": "v1"
-  },
-  {
-    "u_id": "user_005",
-    "age": 19,
-    "price": 5.5,
-    "version": "v2"
-  },
-  {
-    "uid": "user_006",
-    "age": 33,
-    "price": 12.0,
-    "version": "v1"
-  },
-  {
-    "user_id": "user_007",
     "age": 28,
-    "price": 8.75,
-    "version": "v2"
+    "lifetime_value": 1160.37,
+    "tier": "gold",
+    "contact_info": {
+      "email": "jasongallagher@example.org",
+      "phone": "361-855-9407"
+    },
+    "purchase_history": [
+      {
+        "item": "desk_lamp",
+        "cost": 296.69
+      },
+      {
+        "item": "wireless_mouse",
+        "cost": 380.61
+      }
+    ]
   },
   {
-    "u_id": "user_008",
-    "age": 55,
-    "price": 100.0,
-    "version": "v1"
+    "age": 72,
+    "lifetime_value": 302.94,
+    "tier": "gold",
+    "contact_info": {
+      "email": "arnoldmaria@example.net",
+      "phone": "(993)710-3413x164"
+    },
+    "purchase_history": [
+      {
+        "item": "ergonomic_keyboard",
+        "cost": 111.58
+      },
+      {
+        "item": "usb_c_hub",
+        "cost": 55.59
+      },
+      {
+        "item": "portable_ssd",
+        "cost": 52.87
+      }
+    ],
+    "uid": "user_004"
   },
   {
-    "uid": "user_009",
+    "age": 36,
+    "lifetime_value": 577.92,
+    "tier": "gold",
+    "contact_info": {
+      "email": "mitchellclark@example.com",
+      "phone": "001-719-228-3276x483"
+    },
+    "purchase_history": [
+      {
+        "item": "desk_lamp",
+        "cost": 270.43
+      },
+      {
+        "item": "portable_ssd",
+        "cost": 44.01
+      }
+    ],
+    "u_id": "user_005"
+  },
+  {
+    "user_id": "user_006",
+    "age": 42,
+    "lifetime_value": 2119.18,
+    "tier": "gold",
+    "contact_info": {
+      "email": "lydiatrujillo@example.com",
+      "phone": "513-695-3767x242"
+    },
+    "purchase_history": [
+      {
+        "item": "smart_watch",
+        "cost": 353.76
+      },
+      {
+        "item": "wireless_mouse",
+        "cost": 332.33
+      },
+      {
+        "item": "gaming_monitor",
+        "cost": 492.68
+      },
+      {
+        "item": "smart_watch",
+        "cost": 433.91
+      }
+    ]
+  },
+  {
+    "age": 61,
+    "lifetime_value": 888.22,
+    "tier": "silver",
+    "contact_info": {
+      "email": "zhurst@example.com",
+      "phone": "828.371.0122"
+    },
+    "purchase_history": [
+      {
+        "item": "usb_c_hub",
+        "cost": 180.86
+      },
+      {
+        "item": "gaming_monitor",
+        "cost": 352.4
+      }
+    ],
+    "uid": "user_007"
+  },
+  {
+    "age": 67,
+    "lifetime_value": 838.85,
+    "tier": "bronze",
+    "contact_info": {
+      "email": "djames@example.net",
+      "phone": "280-618-4514x627"
+    },
+    "purchase_history": [
+      {
+        "item": "smart_watch",
+        "cost": 85.88
+      },
+      {
+        "item": "portable_ssd",
+        "cost": 138.62
+      },
+      {
+        "item": "webcam_hd",
+        "cost": 113.71
+      },
+      {
+        "item": "usb_c_hub",
+        "cost": 422.21
+      }
+    ],
+    "u_id": "user_008"
+  },
+  {
+    "user_id": "user_009",
+    "age": 38,
+    "lifetime_value": 1293.72,
+    "tier": "platinum",
+    "contact_info": {
+      "email": "williamrodriguez@example.net",
+      "phone": "289-332-5288x0957"
+    },
+    "purchase_history": [
+      {
+        "item": "portable_ssd",
+        "cost": 137.53
+      },
+      {
+        "item": "smart_watch",
+        "cost": 457.0
+      },
+      {
+        "item": "mechanical_switches",
+        "cost": 438.8
+      }
+    ]
+  },
+  {
+    "age": 65,
+    "lifetime_value": 761.89,
+    "tier": "platinum",
+    "contact_info": {
+      "email": "natasha43@example.org",
+      "phone": "991.417.1822"
+    },
+    "purchase_history": [
+      {
+        "item": "desk_lamp",
+        "cost": 75.72
+      },
+      {
+        "item": "ergonomic_keyboard",
+        "cost": 127.08
+      },
+      {
+        "item": "webcam_hd",
+        "cost": 271.79
+      }
+    ],
+    "uid": "user_010"
+  },
+  {
     "age": 41,
-    "price": 60.0,
-    "version": "v1"
+    "lifetime_value": 1400.32,
+    "tier": "bronze",
+    "contact_info": {
+      "email": "mitchellkathryn@example.com",
+      "phone": "(817)897-9086x959"
+    },
+    "purchase_history": [
+      {
+        "item": "gaming_monitor",
+        "cost": 349.63
+      },
+      {
+        "item": "ergonomic_keyboard",
+        "cost": 479.91
+      }
+    ],
+    "u_id": "user_010"
   },
   {
-    "u_id": "user_010",
-    "age": 37,
-    "price": 33.3,
-    "version": "v2"
-  },
-  {
-    "user_id": "user_010",
-    "age": 25,
-    "price": 5.98,
-    "version": "v2"
-  },
-  {
-    "uid": "user_011",
-    "age": 32,
-    "price": 28.77,
-    "version": "v1"
+    "age": 78,
+    "lifetime_value": 1876.84,
+    "tier": "silver",
+    "contact_info": {
+      "email": "brianrodriguez@example.org",
+      "phone": "(821)328-7269x8492"
+    },
+    "purchase_history": [
+      {
+        "item": "desk_lamp",
+        "cost": 306.45
+      },
+      {
+        "item": "webcam_hd",
+        "cost": 219.03
+      },
+      {
+        "item": "usb_c_hub",
+        "cost": 314.13
+      },
+      {
+        "item": "webcam_hd",
+        "cost": 443.82
+      }
+    ],
+    "uid": "user_011"
   },
   {
     "user_id": "user_012",
-    "age": 65,
-    "price": 178.54,
-    "version": "v1"
+    "age": 71,
+    "lifetime_value": 419.16,
+    "tier": "platinum",
+    "contact_info": {
+      "email": "rileyjacob@example.org",
+      "phone": "(344)918-9190"
+    },
+    "purchase_history": [
+      {
+        "item": "noise_canceling_headphones",
+        "cost": 191.05
+      },
+      {
+        "item": "noise_canceling_headphones",
+        "cost": 84.5
+      }
+    ]
   },
   {
     "user_id": "user_013",
-    "age": 45,
-    "price": 7.32,
-    "version": "v1"
+    "age": 36,
+    "lifetime_value": 1025.34,
+    "tier": "bronze",
+    "contact_info": {
+      "email": "mark72@example.org",
+      "phone": "350-694-5291"
+    },
+    "purchase_history": [
+      {
+        "item": "gaming_monitor",
+        "cost": 289.7
+      },
+      {
+        "item": "portable_ssd",
+        "cost": 36.45
+      },
+      {
+        "item": "mechanical_switches",
+        "cost": 35.3
+      },
+      {
+        "item": "wireless_mouse",
+        "cost": 420.35
+      }
+    ]
   },
   {
-    "uid": "user_014",
-    "age": 32,
-    "price": 101.57,
-    "version": "v1"
+    "age": 59,
+    "lifetime_value": 2105.58,
+    "tier": "gold",
+    "contact_info": {
+      "email": "ulam@example.com",
+      "phone": "001-660-376-9152x129"
+    },
+    "purchase_history": [
+      {
+        "item": "noise_canceling_headphones",
+        "cost": 494.17
+      },
+      {
+        "item": "mechanical_switches",
+        "cost": 328.72
+      },
+      {
+        "item": "wireless_mouse",
+        "cost": 51.58
+      },
+      {
+        "item": "mechanical_switches",
+        "cost": 231.42
+      }
+    ],
+    "u_id": "user_014"
   },
   {
     "user_id": "user_015",
-    "age": 30,
-    "price": 143.49,
-    "version": "v2"
+    "age": 29,
+    "lifetime_value": 1865.74,
+    "tier": "bronze",
+    "contact_info": {
+      "email": "cramos@example.org",
+      "phone": "6119205187"
+    },
+    "purchase_history": [
+      {
+        "item": "desk_lamp",
+        "cost": 87.58
+      },
+      {
+        "item": "noise_canceling_headphones",
+        "cost": 391.53
+      },
+      {
+        "item": "wireless_mouse",
+        "cost": 438.81
+      },
+      {
+        "item": "gaming_monitor",
+        "cost": 187.19
+      }
+    ]
   },
   {
-    "uid": "user_016",
-    "age": 46,
-    "price": 118.26,
-    "version": "v1"
-  },
-  {
-    "uid": "user_017",
-    "age": 62,
-    "price": 85.1,
-    "version": "v2"
-  },
-  {
-    "uid": "user_018",
-    "age": 31,
-    "price": 191.49,
-    "version": "v2"
-  },
-  {
-    "uid": "user_019",
+    "user_id": "user_016",
     "age": 23,
-    "price": 76.61,
-    "version": "v2"
+    "lifetime_value": 1464.06,
+    "tier": "bronze",
+    "contact_info": {
+      "email": "meredith61@example.net",
+      "phone": "8137639649"
+    },
+    "purchase_history": [
+      {
+        "item": "noise_canceling_headphones",
+        "cost": 152.02
+      },
+      {
+        "item": "usb_c_hub",
+        "cost": 359.01
+      },
+      {
+        "item": "wireless_mouse",
+        "cost": 239.17
+      },
+      {
+        "item": "portable_ssd",
+        "cost": 302.92
+      }
+    ]
   },
   {
-    "u_id": "user_020",
-    "age": 56,
-    "price": 53.64,
-    "version": "v1"
+    "age": 18,
+    "lifetime_value": 675.5,
+    "tier": "bronze",
+    "contact_info": {
+      "email": "lreed@example.net",
+      "phone": "(830)834-3533"
+    },
+    "purchase_history": [
+      {
+        "item": "ergonomic_keyboard",
+        "cost": 289.17
+      },
+      {
+        "item": "gaming_monitor",
+        "cost": 58.93
+      },
+      {
+        "item": "webcam_hd",
+        "cost": 215.25
+      },
+      {
+        "item": "mechanical_switches",
+        "cost": 23.8
+      }
+    ],
+    "uid": "user_017"
   },
   {
-    "user_id": "user_021",
-    "age": 47,
-    "price": 107.71,
-    "version": "v2"
+    "user_id": "user_018",
+    "age": 72,
+    "lifetime_value": 2406.76,
+    "tier": "bronze",
+    "contact_info": {
+      "email": "brucemason@example.org",
+      "phone": "7086988819"
+    },
+    "purchase_history": [
+      {
+        "item": "wireless_mouse",
+        "cost": 494.65
+      },
+      {
+        "item": "usb_c_hub",
+        "cost": 63.68
+      },
+      {
+        "item": "webcam_hd",
+        "cost": 251.57
+      },
+      {
+        "item": "desk_lamp",
+        "cost": 422.62
+      }
+    ]
   },
   {
-    "uid": "user_022",
-    "age": 53,
-    "price": 59.34,
-    "version": "v2"
+    "user_id": "user_019",
+    "age": 77,
+    "lifetime_value": 736.63,
+    "tier": "gold",
+    "contact_info": {
+      "email": "davidduran@example.org",
+      "phone": "801.831.9963"
+    },
+    "purchase_history": [
+      {
+        "item": "noise_canceling_headphones",
+        "cost": 360.28
+      },
+      {
+        "item": "portable_ssd",
+        "cost": 101.02
+      }
+    ]
+  },
+  {
+    "user_id": "user_020",
+    "age": 30,
+    "lifetime_value": 1976.11,
+    "tier": "bronze",
+    "contact_info": {
+      "email": "smithnicholas@example.com",
+      "phone": "648-328-9233x30147"
+    },
+    "purchase_history": [
+      {
+        "item": "portable_ssd",
+        "cost": 456.66
+      },
+      {
+        "item": "usb_c_hub",
+        "cost": 201.97
+      },
+      {
+        "item": "wireless_mouse",
+        "cost": 96.97
+      },
+      {
+        "item": "ergonomic_keyboard",
+        "cost": 392.7
+      }
+    ]
+  },
+  {
+    "age": 80,
+    "lifetime_value": 713.33,
+    "tier": "platinum",
+    "contact_info": {
+      "email": "jwarner@example.com",
+      "phone": "903.972.4974"
+    },
+    "purchase_history": [
+      {
+        "item": "gaming_monitor",
+        "cost": 114.86
+      },
+      {
+        "item": "smart_watch",
+        "cost": 389.41
+      }
+    ],
+    "uid": "user_021"
+  },
+  {
+    "user_id": "user_022",
+    "age": 52,
+    "lifetime_value": 507.45,
+    "tier": "bronze",
+    "contact_info": {
+      "email": "rhonda87@example.net",
+      "phone": "+1-366-589-1392x901"
+    },
+    "purchase_history": [
+      {
+        "item": "desk_lamp",
+        "cost": 253.2
+      },
+      {
+        "item": "noise_canceling_headphones",
+        "cost": 18.47
+      }
+    ]
   },
   {
     "user_id": "user_023",
-    "age": 30,
-    "price": 141.21,
-    "version": "v1"
+    "age": 24,
+    "lifetime_value": 1072.03,
+    "tier": "bronze",
+    "contact_info": {
+      "email": "traciebishop@example.net",
+      "phone": "404.327.7641x57747"
+    },
+    "purchase_history": [
+      {
+        "item": "gaming_monitor",
+        "cost": 113.71
+      },
+      {
+        "item": "desk_lamp",
+        "cost": 383.29
+      },
+      {
+        "item": "ergonomic_keyboard",
+        "cost": 128.35
+      }
+    ]
   },
   {
     "user_id": "user_024",
-    "age": 32,
-    "price": 154.84,
-    "version": "v1"
+    "age": 52,
+    "lifetime_value": 603.48,
+    "tier": "silver",
+    "contact_info": {
+      "email": "michael51@example.com",
+      "phone": "001-675-243-3725x463"
+    },
+    "purchase_history": [
+      {
+        "item": "portable_ssd",
+        "cost": 104.5
+      },
+      {
+        "item": "portable_ssd",
+        "cost": 57.22
+      },
+      {
+        "item": "ergonomic_keyboard",
+        "cost": 191.19
+      },
+      {
+        "item": "usb_c_hub",
+        "cost": 159.74
+      }
+    ]
   },
   {
-    "uid": "user_025",
-    "age": 24,
-    "price": 76.65,
-    "version": "v2"
+    "age": 62,
+    "lifetime_value": 503.89,
+    "tier": "bronze",
+    "contact_info": {
+      "email": "kevinanderson@example.org",
+      "phone": "422.698.3476"
+    },
+    "purchase_history": [
+      {
+        "item": "smart_watch",
+        "cost": 122.07
+      },
+      {
+        "item": "noise_canceling_headphones",
+        "cost": 137.78
+      }
+    ],
+    "u_id": "user_025"
   },
   {
-    "user_id": "user_026",
-    "age": 41,
-    "price": 33.37,
-    "version": "v2"
-  },
-  {
-    "uid": "user_027",
     "age": 60,
-    "price": 54.13,
-    "version": "v1"
+    "lifetime_value": 694.97,
+    "tier": "platinum",
+    "contact_info": {
+      "email": "skinnerzachary@example.org",
+      "phone": "864-284-1298"
+    },
+    "purchase_history": [
+      {
+        "item": "usb_c_hub",
+        "cost": 75.4
+      },
+      {
+        "item": "smart_watch",
+        "cost": 9.95
+      },
+      {
+        "item": "smart_watch",
+        "cost": 240.15
+      },
+      {
+        "item": "ergonomic_keyboard",
+        "cost": 146.6
+      }
+    ],
+    "u_id": "user_026"
   },
   {
-    "user_id": "user_028",
-    "age": 58,
-    "price": 35.06,
-    "version": "v1"
+    "user_id": "user_027",
+    "age": 54,
+    "lifetime_value": 909.64,
+    "tier": "silver",
+    "contact_info": {
+      "email": "ojohnston@example.com",
+      "phone": "+1-378-510-7714"
+    },
+    "purchase_history": [
+      {
+        "item": "webcam_hd",
+        "cost": 245.98
+      },
+      {
+        "item": "webcam_hd",
+        "cost": 306.98
+      },
+      {
+        "item": "portable_ssd",
+        "cost": 261.43
+      }
+    ]
   },
   {
-    "uid": "user_029",
-    "age": 47,
-    "price": 76.51,
-    "version": "v1"
+    "age": 64,
+    "lifetime_value": 2152.44,
+    "tier": "bronze",
+    "contact_info": {
+      "email": "rhale@example.net",
+      "phone": "+1-767-222-5014"
+    },
+    "purchase_history": [
+      {
+        "item": "wireless_mouse",
+        "cost": 324.94
+      },
+      {
+        "item": "noise_canceling_headphones",
+        "cost": 452.68
+      },
+      {
+        "item": "smart_watch",
+        "cost": 98.05
+      },
+      {
+        "item": "smart_watch",
+        "cost": 307.29
+      }
+    ],
+    "u_id": "user_028"
   },
   {
-    "user_id": "user_030",
-    "age": 38,
-    "price": 168.73,
-    "version": "v1"
+    "age": 39,
+    "lifetime_value": 967.3,
+    "tier": "gold",
+    "contact_info": {
+      "email": "vancemary@example.org",
+      "phone": "3535516700"
+    },
+    "purchase_history": [
+      {
+        "item": "desk_lamp",
+        "cost": 499.03
+      },
+      {
+        "item": "portable_ssd",
+        "cost": 152.13
+      }
+    ],
+    "u_id": "user_029"
   },
   {
-    "uid": "user_031",
-    "age": 20,
-    "price": 161.2,
-    "version": "v2"
+    "age": 24,
+    "lifetime_value": 1027.91,
+    "tier": "platinum",
+    "contact_info": {
+      "email": "hebertchristina@example.org",
+      "phone": "5606114019"
+    },
+    "purchase_history": [
+      {
+        "item": "noise_canceling_headphones",
+        "cost": 403.15
+      },
+      {
+        "item": "usb_c_hub",
+        "cost": 169.74
+      }
+    ],
+    "u_id": "user_030"
   },
   {
-    "u_id": "user_032",
-    "age": 22,
-    "price": 42.99,
-    "version": "v2"
+    "user_id": "user_031",
+    "age": 33,
+    "lifetime_value": 1312.91,
+    "tier": "gold",
+    "contact_info": {
+      "email": "raymond22@example.net",
+      "phone": "001-857-996-6575x937"
+    },
+    "purchase_history": [
+      {
+        "item": "smart_watch",
+        "cost": 122.13
+      },
+      {
+        "item": "desk_lamp",
+        "cost": 95.17
+      },
+      {
+        "item": "gaming_monitor",
+        "cost": 497.45
+      }
+    ]
   },
   {
-    "uid": "user_033",
     "age": 59,
-    "price": 100.35,
-    "version": "v2"
+    "lifetime_value": 2211.21,
+    "tier": "silver",
+    "contact_info": {
+      "email": "boydlori@example.com",
+      "phone": "3922117171"
+    },
+    "purchase_history": [
+      {
+        "item": "wireless_mouse",
+        "cost": 474.47
+      },
+      {
+        "item": "gaming_monitor",
+        "cost": 443.53
+      },
+      {
+        "item": "ergonomic_keyboard",
+        "cost": 110.7
+      },
+      {
+        "item": "ergonomic_keyboard",
+        "cost": 345.37
+      }
+    ],
+    "u_id": "user_032"
   },
   {
-    "uid": "user_034",
+    "age": 50,
+    "lifetime_value": 1917.97,
+    "tier": "bronze",
+    "contact_info": {
+      "email": "tammy88@example.com",
+      "phone": "470.235.5161"
+    },
+    "purchase_history": [
+      {
+        "item": "portable_ssd",
+        "cost": 457.3
+      },
+      {
+        "item": "ergonomic_keyboard",
+        "cost": 496.49
+      },
+      {
+        "item": "noise_canceling_headphones",
+        "cost": 421.59
+      }
+    ],
+    "u_id": "user_033"
+  },
+  {
+    "user_id": "user_034",
+    "age": 43,
+    "lifetime_value": 857.41,
+    "tier": "platinum",
+    "contact_info": {
+      "email": "riosmolly@example.org",
+      "phone": "+1-813-218-8680x59554"
+    },
+    "purchase_history": [
+      {
+        "item": "webcam_hd",
+        "cost": 379.9
+      },
+      {
+        "item": "gaming_monitor",
+        "cost": 52.36
+      },
+      {
+        "item": "mechanical_switches",
+        "cost": 348.11
+      }
+    ]
+  },
+  {
+    "age": 22,
+    "lifetime_value": 649.3,
+    "tier": "silver",
+    "contact_info": {
+      "email": "fcummings@example.org",
+      "phone": "+1-600-206-4484x057"
+    },
+    "purchase_history": [
+      {
+        "item": "webcam_hd",
+        "cost": 238.04
+      },
+      {
+        "item": "noise_canceling_headphones",
+        "cost": 9.43
+      },
+      {
+        "item": "desk_lamp",
+        "cost": 243.35
+      }
+    ],
+    "u_id": "user_035"
+  },
+  {
     "age": 34,
-    "price": 28.79,
-    "version": "v2"
+    "lifetime_value": 1421.77,
+    "tier": "bronze",
+    "contact_info": {
+      "email": "ayersraymond@example.com",
+      "phone": "001-351-950-3816x55974"
+    },
+    "purchase_history": [
+      {
+        "item": "noise_canceling_headphones",
+        "cost": 342.0
+      },
+      {
+        "item": "webcam_hd",
+        "cost": 216.01
+      },
+      {
+        "item": "ergonomic_keyboard",
+        "cost": 475.47
+      },
+      {
+        "item": "usb_c_hub",
+        "cost": 8.5
+      }
+    ],
+    "uid": "user_036"
   },
   {
-    "user_id": "user_035",
-    "age": 55,
-    "price": 86.26,
-    "version": "v2"
+    "age": 62,
+    "lifetime_value": 478.77,
+    "tier": "bronze",
+    "contact_info": {
+      "email": "wesley21@example.com",
+      "phone": "(367)923-9447x61554"
+    },
+    "purchase_history": [
+      {
+        "item": "usb_c_hub",
+        "cost": 96.66
+      },
+      {
+        "item": "usb_c_hub",
+        "cost": 106.49
+      },
+      {
+        "item": "noise_canceling_headphones",
+        "cost": 210.16
+      },
+      {
+        "item": "wireless_mouse",
+        "cost": 10.68
+      }
+    ],
+    "uid": "user_037"
   },
   {
-    "u_id": "user_036",
-    "age": 32,
-    "price": 199.47,
-    "version": "v1"
-  },
-  {
-    "user_id": "user_037",
-    "age": 49,
-    "price": 19.09,
-    "version": "v1"
-  },
-  {
-    "uid": "user_038",
-    "age": 27,
-    "price": 125.86,
-    "version": "v2"
+    "age": 73,
+    "lifetime_value": 374.82,
+    "tier": "silver",
+    "contact_info": {
+      "email": "xoconnor@example.net",
+      "phone": "(960)800-2435x9528"
+    },
+    "purchase_history": [
+      {
+        "item": "smart_watch",
+        "cost": 126.07
+      },
+      {
+        "item": "portable_ssd",
+        "cost": 24.47
+      },
+      {
+        "item": "noise_canceling_headphones",
+        "cost": 54.22
+      },
+      {
+        "item": "wireless_mouse",
+        "cost": 40.75
+      }
+    ],
+    "u_id": "user_038"
   },
   {
     "user_id": "user_039",
+    "age": 54,
+    "lifetime_value": 1250.67,
+    "tier": "platinum",
+    "contact_info": {
+      "email": "nelsoncynthia@example.net",
+      "phone": "449-509-8204x21754"
+    },
+    "purchase_history": [
+      {
+        "item": "portable_ssd",
+        "cost": 305.96
+      },
+      {
+        "item": "ergonomic_keyboard",
+        "cost": 314.46
+      },
+      {
+        "item": "usb_c_hub",
+        "cost": 248.18
+      }
+    ]
+  },
+  {
+    "age": 51,
+    "lifetime_value": 1507.83,
+    "tier": "silver",
+    "contact_info": {
+      "email": "maldonadochristopher@example.com",
+      "phone": "(497)780-2164"
+    },
+    "purchase_history": [
+      {
+        "item": "desk_lamp",
+        "cost": 189.49
+      },
+      {
+        "item": "smart_watch",
+        "cost": 224.01
+      },
+      {
+        "item": "desk_lamp",
+        "cost": 413.28
+      }
+    ],
+    "u_id": "user_040"
+  },
+  {
     "age": 22,
-    "price": 77.57,
-    "version": "v2"
+    "lifetime_value": 202.07,
+    "tier": "bronze",
+    "contact_info": {
+      "email": "watsonseth@example.com",
+      "phone": "679-711-2276"
+    },
+    "purchase_history": [
+      {
+        "item": "mechanical_switches",
+        "cost": 93.38
+      },
+      {
+        "item": "noise_canceling_headphones",
+        "cost": 42.38
+      }
+    ],
+    "uid": "user_041"
   },
   {
-    "user_id": "user_040",
-    "age": 34,
-    "price": 194.24,
-    "version": "v1"
-  },
-  {
-    "user_id": "user_041",
-    "age": 64,
-    "price": 23.8,
-    "version": "v2"
-  },
-  {
-    "user_id": "user_042",
-    "age": 39,
-    "price": 23.2,
-    "version": "v2"
-  },
-  {
-    "uid": "user_043",
-    "age": 47,
-    "price": 1.65,
-    "version": "v2"
-  },
-  {
-    "user_id": "user_044",
-    "age": 29,
-    "price": 102.03,
-    "version": "v1"
-  },
-  {
-    "user_id": "user_045",
-    "age": 37,
-    "price": 168.49,
-    "version": "v1"
-  },
-  {
-    "uid": "user_046",
     "age": 41,
-    "price": 152.74,
-    "version": "v1"
+    "lifetime_value": 1303.35,
+    "tier": "bronze",
+    "contact_info": {
+      "email": "bruce27@example.net",
+      "phone": "001-999-255-9023x251"
+    },
+    "purchase_history": [
+      {
+        "item": "gaming_monitor",
+        "cost": 484.28
+      },
+      {
+        "item": "webcam_hd",
+        "cost": 407.68
+      },
+      {
+        "item": "portable_ssd",
+        "cost": 119.43
+      },
+      {
+        "item": "wireless_mouse",
+        "cost": 124.69
+      }
+    ],
+    "uid": "user_042"
   },
   {
-    "user_id": "user_047",
-    "age": 38,
-    "price": 98.23,
-    "version": "v1"
+    "user_id": "user_043",
+    "age": 20,
+    "lifetime_value": 1249.79,
+    "tier": "silver",
+    "contact_info": {
+      "email": "scook@example.net",
+      "phone": "(533)568-9865"
+    },
+    "purchase_history": [
+      {
+        "item": "webcam_hd",
+        "cost": 301.6
+      },
+      {
+        "item": "noise_canceling_headphones",
+        "cost": 435.33
+      }
+    ]
   },
   {
-    "u_id": "user_048",
-    "age": 37,
-    "price": 48.65,
-    "version": "v1"
+    "age": 36,
+    "lifetime_value": 1738.53,
+    "tier": "bronze",
+    "contact_info": {
+      "email": "jerry14@example.com",
+      "phone": "575-616-0045"
+    },
+    "purchase_history": [
+      {
+        "item": "noise_canceling_headphones",
+        "cost": 281.23
+      },
+      {
+        "item": "portable_ssd",
+        "cost": 406.09
+      },
+      {
+        "item": "wireless_mouse",
+        "cost": 181.84
+      },
+      {
+        "item": "mechanical_switches",
+        "cost": 163.79
+      }
+    ],
+    "u_id": "user_044"
+  },
+  {
+    "age": 40,
+    "lifetime_value": 510.22,
+    "tier": "bronze",
+    "contact_info": {
+      "email": "myersmelissa@example.net",
+      "phone": "001-250-807-6132"
+    },
+    "purchase_history": [
+      {
+        "item": "noise_canceling_headphones",
+        "cost": 19.21
+      },
+      {
+        "item": "wireless_mouse",
+        "cost": 34.15
+      },
+      {
+        "item": "portable_ssd",
+        "cost": 139.1
+      },
+      {
+        "item": "webcam_hd",
+        "cost": 152.74
+      }
+    ],
+    "uid": "user_045"
+  },
+  {
+    "age": 44,
+    "lifetime_value": 1345.68,
+    "tier": "platinum",
+    "contact_info": {
+      "email": "christopher83@example.org",
+      "phone": "307-813-5796x855"
+    },
+    "purchase_history": [
+      {
+        "item": "portable_ssd",
+        "cost": 154.82
+      },
+      {
+        "item": "gaming_monitor",
+        "cost": 378.49
+      },
+      {
+        "item": "noise_canceling_headphones",
+        "cost": 179.75
+      },
+      {
+        "item": "smart_watch",
+        "cost": 273.45
+      }
+    ],
+    "u_id": "user_046"
+  },
+  {
+    "age": 46,
+    "lifetime_value": 916.07,
+    "tier": "platinum",
+    "contact_info": {
+      "email": "john59@example.com",
+      "phone": "391.790.3164x3672"
+    },
+    "purchase_history": [
+      {
+        "item": "desk_lamp",
+        "cost": 181.87
+      },
+      {
+        "item": "ergonomic_keyboard",
+        "cost": 448.46
+      }
+    ],
+    "uid": "user_047"
+  },
+  {
+    "age": 44,
+    "lifetime_value": 701.69,
+    "tier": "gold",
+    "contact_info": {
+      "email": "anthonyallen@example.org",
+      "phone": "+1-256-352-7627"
+    },
+    "purchase_history": [
+      {
+        "item": "mechanical_switches",
+        "cost": 362.07
+      },
+      {
+        "item": "gaming_monitor",
+        "cost": 249.73
+      }
+    ],
+    "u_id": "user_048"
   },
   {
     "user_id": "user_049",
-    "age": 23,
-    "price": 18.05,
-    "version": "v2"
+    "age": 75,
+    "lifetime_value": 1559.4,
+    "tier": "gold",
+    "contact_info": {
+      "email": "cmccormick@example.com",
+      "phone": "8487742534"
+    },
+    "purchase_history": [
+      {
+        "item": "noise_canceling_headphones",
+        "cost": 399.4
+      },
+      {
+        "item": "mechanical_switches",
+        "cost": 256.73
+      },
+      {
+        "item": "desk_lamp",
+        "cost": 378.18
+      }
+    ]
   }
 ]

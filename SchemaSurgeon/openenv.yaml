@@ -11,18 +11,118 @@ description: >
   toward a strict JSON Schema target.
 author: Team PARADOX
 tasks:
-  - id: task1
+  task1:
+    id: task1
     name: The Standardizer
     difficulty: easy
-    description: Normalize key naming variants (uid, u_id) to user_id.
-  - id: task2
+    data_file: server/data/task1.json
+    max_steps: 30
+    description: Normalize id key drift in realistic e-commerce user records.
+    target_schema:
+      type: object
+      required: [user_id, contact_info, purchase_history]
+      properties:
+        user_id:
+          type: string
+        contact_info:
+          type: object
+          required: [email, phone]
+          properties:
+            email:
+              type: string
+            phone:
+              type: string
+          additionalProperties: true
+        purchase_history:
+          type: array
+          items:
+            type: object
+            required: [item, cost]
+            properties:
+              item:
+                type: string
+              cost:
+                type: number
+            additionalProperties: true
+      additionalProperties: true
+  task2:
+    id: task2
     name: The Type-Checker
     difficulty: medium
-    description: Fix type mismatches (age to int, price to float).
-  - id: task3
+    data_file: server/data/task2.json
+    max_steps: 30
+    description: Fix root-level type drift while preserving nested realistic structures.
+    target_schema:
+      type: object
+      required: [user_id, age, lifetime_value, contact_info, purchase_history]
+      properties:
+        user_id:
+          type: string
+        age:
+          type: integer
+        lifetime_value:
+          type: number
+        contact_info:
+          type: object
+          required: [email, phone]
+          properties:
+            email:
+              type: string
+            phone:
+              type: string
+          additionalProperties: true
+        purchase_history:
+          type: array
+          items:
+            type: object
+            required: [item, cost]
+            properties:
+              item:
+                type: string
+              cost:
+                type: number
+            additionalProperties: true
+      additionalProperties: true
+  task3:
+    id: task3
     name: The Full Architect
     difficulty: hard
-    description: Full migration - rename keys, fix types, flatten nested fields.
+    data_file: server/data/task3.json
+    max_steps: 30
+    description: Resolve key drift, type drift, and flatten profile.tier to tier.
+    target_schema:
+      type: object
+      required: [user_id, age, lifetime_value, tier, contact_info, purchase_history]
+      properties:
+        user_id:
+          type: string
+        age:
+          type: integer
+        lifetime_value:
+          type: number
+        tier:
+          type: string
+        contact_info:
+          type: object
+          required: [email, phone]
+          properties:
+            email:
+              type: string
+            phone:
+              type: string
+          additionalProperties: true
+        purchase_history:
+          type: array
+          items:
+            type: object
+            required: [item, cost]
+            properties:
+              item:
+                type: string
+              cost:
+                type: number
+            additionalProperties: true
+      additionalProperties: true
 api:
   reset: POST /reset
   step: POST /step

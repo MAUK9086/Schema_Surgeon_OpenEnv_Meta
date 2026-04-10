@@ -12,6 +12,8 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 from uuid import uuid4
 
+import yaml
+
 from openenv.core.env_server.interfaces import Environment
 from openenv.core.env_server.types import State
 
@@ -20,17 +22,16 @@ try:
     from server.actions import dispatch_action
     from server.grader import calculate_score
     from server.obs import build_observation
-    from server.tasks import get_task
 except ModuleNotFoundError:
     from SchemaSurgeon.models import SchemaAction, SchemaObservation
     from SchemaSurgeon.server.actions import dispatch_action
     from SchemaSurgeon.server.grader import calculate_score
     from SchemaSurgeon.server.obs import build_observation
-    from SchemaSurgeon.server.tasks import get_task
 
 DEFAULT_TASK_ID: str = "task1"
 DEFAULT_MAX_STEPS: int = 30
 STAGNATION_LIMIT: int = 5
+OPENENV_FILE_NAME: str = "openenv.yaml"
 
 
 class SchemaSurgeonEnvironment(Environment[SchemaAction, SchemaObservation, State]):
@@ -98,8 +99,29 @@ class SchemaSurgeonEnvironment(Environment[SchemaAction, SchemaObservation, Stat
         Returns:
             None.
         """
+        project_root = Path(__file__).resolve().parents[1]
+        openenv_path = project_root / OPENENV_FILE_NAME
+        with openenv_path.open("r", encoding="utf-8") as file_obj:
+            openenv_config = yaml.safe_load(file_obj) or {}
+
+        raw_tasks = openenv_config.get("tasks", {})
+        task_config: Optional[Dict[str, Any]] = None
+
+        if isinstance(raw_tasks, dict):
+            maybe_task = raw_tasks.get(task_id)
+            if isinstance(maybe_task, dict):
+                task_config = maybe_task
+        elif isinstance(raw_tasks, list):
+            for task_item in raw_tasks:
+                if isinstance(task_item, dict) and task_item.get("id") == task_id:
+                    task_config = task_item
+                    break
+
+        if task_config is None:
+            raise KeyError(f"Task '{task_id}' not found in {OPENENV_FILE_NAME}.")
+
         self.task_id = task_id
-        self.task_config = get_task(task_id)
+        self.task_config = task_config
         self.target_schema = self.task_config["target_schema"]
         self.max_steps = int(self.task_config.get("max_steps", DEFAULT_MAX_STEPS))
         self.protected_keys = list(self.target_schema.get("required", []))

@@ -55,6 +55,30 @@ def cast_type(
         return f"error: unsupported target_type '{target_type}'. Use int, float, or str."
 
     caster = type_map[target_type]
+
+    def is_target_type(value: Any) -> bool:
+        """
+        Check whether a value already matches target_type semantics.
+
+        Args:
+            value: Candidate value.
+
+        Returns:
+            True when the value is already valid for target_type.
+        """
+        if target_type == "int":
+            return isinstance(value, int) and not isinstance(value, bool)
+        if target_type == "float":
+            return isinstance(value, float)
+        return isinstance(value, str)
+
+    casted_default: Any = default_value
+    if default_value is not None and not is_target_type(default_value):
+        try:
+            casted_default = caster(default_value)
+        except (TypeError, ValueError):
+            casted_default = default_value
+
     modified = 0
 
     for doc in collection:
@@ -62,14 +86,19 @@ def cast_type(
             continue
 
         original = doc[key]
+
+        if is_target_type(original):
+            continue
+
         try:
             casted = caster(original)
-            if casted != original or type(casted) is not type(original):
+            if casted != original or not is_target_type(original):
                 doc[key] = casted
                 modified += 1
         except (TypeError, ValueError):
-            doc[key] = default_value
-            modified += 1
+            if original != casted_default or not is_target_type(original):
+                doc[key] = casted_default
+                modified += 1
 
     return "success" if modified > 0 else "no_op"
 
