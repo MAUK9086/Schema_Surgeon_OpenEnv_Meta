@@ -8,9 +8,13 @@ Runs all tasks sequentially through SchemaSurgeonEnv and emits required logs.
 import asyncio
 import json
 import os
+import re
+import time
 from typing import Any, Dict, List, Optional
 
 from openai import OpenAI
+from openai import APIConnectionError, APIError, APITimeoutError, RateLimitError
+from pydantic import ValidationError
 
 from client import SchemaSurgeonEnv
 from models import SchemaAction
@@ -25,6 +29,10 @@ MAX_TOKENS: int = 512
 MAX_STEPS: int = 30
 SUCCESS_THRESHOLD: float = 0.95
 TASKS: List[str] = ["task1", "task2", "task3"]
+MAX_API_RETRIES: int = 3
+INITIAL_BACKOFF_SECONDS: float = 1.0
+
+DEFAULT_ACTION: Dict[str, Any] = {"action_type": "terminate", "params": {}}
 
 SYSTEM_PROMPT: str = (
     "You are a Database Migration Agent. You will receive a sample of documents, "
@@ -107,24 +115,82 @@ def parse_action_response(raw_text: str) -> Dict[str, Any]:
     Returns:
         Valid action dictionary or terminate fallback.
     """
+    json_candidates = extract_json_candidates(raw_text)
+    for candidate in json_candidates:
+        try:
+            parsed = json.loads(candidate)
+        except json.JSONDecodeError:
+            continue
+
+        if isinstance(parsed, dict) and "action_type" in parsed and "params" in parsed:
+            return parsed
+
+    return DEFAULT_ACTION.copy()
+
+
+def extract_json_candidates(raw_text: str) -> List[str]:
+    """
+    Extract candidate JSON object strings from arbitrary model output text.
+
+    Args:
+        raw_text: Raw LLM response which may contain markdown fences or prose.
+
+    Returns:
+        Ordered list of candidate JSON object snippets.
+    """
+    candidates: List[str] = []
     stripped = raw_text.strip()
-    brace_index = stripped.rfind("{")
-    if brace_index < 0:
-        return {"action_type": "terminate", "params": {}}
 
-    candidate = stripped[brace_index:]
+    if stripped:
+        candidates.append(stripped)
+
+    fence_pattern = re.compile(r"```(?:json)?\s*([\s\S]*?)```", re.IGNORECASE)
+    for match in fence_pattern.finditer(raw_text):
+        fenced_block = match.group(1).strip()
+        if fenced_block:
+            candidates.append(fenced_block)
+
+    start_indices = [idx for idx, char in enumerate(raw_text) if char == "{"]
+    for start_idx in start_indices:
+        depth = 0
+        for end_idx in range(start_idx, len(raw_text)):
+            char = raw_text[end_idx]
+            if char == "{":
+                depth += 1
+            elif char == "}":
+                depth -= 1
+                if depth == 0:
+                    fragment = raw_text[start_idx : end_idx + 1].strip()
+                    if fragment:
+                        candidates.append(fragment)
+                    break
+
+    # Keep insertion order while deduplicating.
+    unique_candidates: List[str] = []
+    seen: set[str] = set()
+    for candidate in candidates:
+        if candidate not in seen:
+            seen.add(candidate)
+            unique_candidates.append(candidate)
+
+    return unique_candidates
+
+
+def validate_action_dict(action_dict: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Validate an action dictionary using SchemaAction.
+
+    Args:
+        action_dict: Candidate action payload.
+
+    Returns:
+        Validated action dict or default terminate action.
+    """
     try:
-        parsed = json.loads(candidate)
-    except json.JSONDecodeError:
-        return {"action_type": "terminate", "params": {}}
-
-    if not isinstance(parsed, dict):
-        return {"action_type": "terminate", "params": {}}
-
-    if "action_type" not in parsed or "params" not in parsed:
-        return {"action_type": "terminate", "params": {}}
-
-    return parsed
+        action = SchemaAction(**action_dict)
+        return action.model_dump()
+    except ValidationError:
+        return DEFAULT_ACTION.copy()
 
 
 def get_agent_action(
@@ -156,21 +222,35 @@ def get_agent_action(
         "Output your next action as JSON:"
     )
 
-    try:
-        completion = llm_client.chat.completions.create(
-            model=MODEL_NAME,
-            messages=[
-                {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": user_prompt},
-            ],
-            temperature=TEMPERATURE,
-            max_tokens=MAX_TOKENS,
-        )
-        raw_text = completion.choices[0].message.content or ""
-    except (KeyError, IndexError, TypeError, ValueError):
-        return {"action_type": "terminate", "params": {}}
+    for attempt in range(1, MAX_API_RETRIES + 1):
+        try:
+            completion = llm_client.chat.completions.create(
+                model=MODEL_NAME,
+                messages=[
+                    {"role": "system", "content": SYSTEM_PROMPT},
+                    {"role": "user", "content": user_prompt},
+                ],
+                temperature=TEMPERATURE,
+                max_tokens=MAX_TOKENS,
+            )
+            raw_text = completion.choices[0].message.content or ""
+            parsed_action = parse_action_response(raw_text)
+            return validate_action_dict(parsed_action)
+        except (APIConnectionError, APIError, APITimeoutError, RateLimitError):
+            if attempt < MAX_API_RETRIES:
+                backoff_seconds = INITIAL_BACKOFF_SECONDS * (2 ** (attempt - 1))
+                print(
+                    f"[DEBUG] LLM request failed on attempt {attempt}; retrying in "
+                    f"{backoff_seconds:.1f}s",
+                    flush=True,
+                )
+                time.sleep(backoff_seconds)
+                continue
+            break
+        except (IndexError, KeyError, TypeError, ValueError):
+            break
 
-    return parse_action_response(raw_text)
+    return DEFAULT_ACTION.copy()
 
 
 async def run_task(llm_client: OpenAI, task_id: str) -> float:
@@ -197,12 +277,7 @@ async def run_task(llm_client: OpenAI, task_id: str) -> float:
 
         for step_number in range(1, MAX_STEPS + 1):
             action_dict = get_agent_action(llm_client, observation, history)
-
-            try:
-                action = SchemaAction(**action_dict)
-            except (TypeError, ValueError):
-                action = SchemaAction(action_type="terminate", params={})
-                action_dict = action.model_dump()
+            action = SchemaAction(**action_dict)
 
             result = await env_client.step(action)
             reward_val = float(result.reward or 0.0)
