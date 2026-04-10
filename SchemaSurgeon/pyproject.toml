@@ -1,0 +1,39 @@
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+#
+# This source code is licensed under the BSD-style license found in the
+# LICENSE file in the root directory of this source tree.
+
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "openenv-SchemaSurgeon"
+version = "0.1.0"
+description = "Schemasurgeon environment for OpenEnv"
+requires-python = ">=3.10"
+dependencies = [
+    "openenv-core[core]>=0.2.2",
+    "fastapi>=0.111.0",
+    "uvicorn>=0.29.0",
+    "pydantic>=2.0",
+    "jsonschema>=4.22.0",
+    "openai>=1.30.1",
+    "httpx>=0.27.0",
+    "python-dotenv>=1.0.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=4.0.0",
+]
+
+[project.scripts]
+server = "SchemaSurgeon.server.app:main"
+
+[tool.setuptools]
+include-package-data = true
+packages = ["SchemaSurgeon", "SchemaSurgeon.server"]
+package-dir = { "SchemaSurgeon" = ".", "SchemaSurgeon.server" = "server" }

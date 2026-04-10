@@ -1,0 +1,302 @@
+[
+  {
+    "user_id": "user_001",
+    "age": "25",
+    "price": "19.99",
+    "version": "v1"
+  },
+  {
+    "user_id": "user_002",
+    "age": 30,
+    "price": "25.0",
+    "version": "v2"
+  },
+  {
+    "user_id": "user_003",
+    "age": "22",
+    "price": 9.99,
+    "version": "v1"
+  },
+  {
+    "user_id": "user_004",
+    "age": 45,
+    "price": "50.0",
+    "version": "v1"
+  },
+  {
+    "user_id": "user_005",
+    "age": "19",
+    "price": 5.5,
+    "version": "v2"
+  },
+  {
+    "user_id": "user_006",
+    "age": "33",
+    "price": "12.0",
+    "version": "v1"
+  },
+  {
+    "user_id": "user_007",
+    "age": 28,
+    "price": 8.75,
+    "version": "v2"
+  },
+  {
+    "user_id": "user_008",
+    "age": "55",
+    "price": "100.0",
+    "version": "v1"
+  },
+  {
+    "user_id": "user_009",
+    "age": 41,
+    "price": "60.0",
+    "version": "v1"
+  },
+  {
+    "user_id": "user_010",
+    "age": "37",
+    "price": "33.3",
+    "version": "v2"
+  },
+  {
+    "user_id": "user_010",
+    "age": "25",
+    "price": "5.98",
+    "version": "v1"
+  },
+  {
+    "user_id": "user_011",
+    "age": "65",
+    "price": 178.54,
+    "version": "v1"
+  },
+  {
+    "user_id": "user_012",
+    "age": 31,
+    "price": 47.3,
+    "version": "v2"
+  },
+  {
+    "user_id": "user_013",
+    "age": 46,
+    "price": "118.26",
+    "version": "v1"
+  },
+  {
+    "user_id": "user_014",
+    "age": "45",
+    "price": 68.71,
+    "version": "v2"
+  },
+  {
+    "user_id": "user_015",
+    "age": 23,
+    "price": 76.61,
+    "version": "v2"
+  },
+  {
+    "user_id": "user_016",
+    "age": "64",
+    "price": 92.43,
+    "version": "v1"
+  },
+  {
+    "user_id": "user_017",
+    "age": 36,
+    "price": 166.05,
+    "version": "v1"
+  },
+  {
+    "user_id": "user_018",
+    "age": "22",
+    "price": "10.12",
+    "version": "v1"
+  },
+  {
+    "user_id": "user_019",
+    "age": 24,
+    "price": 76.65,
+    "version": "v1"
+  },
+  {
+    "user_id": "user_020",
+    "age": "40",
+    "price": 42.69,
+    "version": "v1"
+  },
+  {
+    "user_id": "user_021",
+    "age": 58,
+    "price": "35.06",
+    "version": "v2"
+  },
+  {
+    "user_id": "user_022",
+    "age": "58",
+    "price": 137.94,
+    "version": "v1"
+  },
+  {
+    "user_id": "user_023",
+    "age": 20,
+    "price": "161.2",
+    "version": "v2"
+  },
+  {
+    "user_id": "user_024",
+    "age": 59,
+    "price": 100.35,
+    "version": "v1"
+  },
+  {
+    "user_id": "user_025",
+    "age": 26,
+    "price": "50.08",
+    "version": "v2"
+  },
+  {
+    "user_id": "user_026",
+    "age": 43,
+    "price": "73.04",
+    "version": "v2"
+  },
+  {
+    "user_id": "user_027",
+    "age": "21",
+    "price": "172.36",
+    "version": "v2"
+  },
+  {
+    "user_id": "user_028",
+    "age": 22,
+    "price": 77.57,
+    "version": "v2"
+  },
+  {
+    "user_id": "user_029",
+    "age": "18",
+    "price": 136.38,
+    "version": "v2"
+  },
+  {
+    "user_id": "user_030",
+    "age": 39,
+    "price": 23.2,
+    "version": "v2"
+  },
+  {
+    "user_id": "user_031",
+    "age": "29",
+    "price": 102.03,
+    "version": "v1"
+  },
+  {
+    "user_id": "user_032",
+    "age": 41,
+    "price": 152.74,
+    "version": "v1"
+  },
+  {
+    "user_id": "user_033",
+    "age": "38",
+    "price": 98.23,
+    "version": "v2"
+  },
+  {
+    "user_id": "user_034",
+    "age": 21,
+    "price": "48.93",
+    "version": "v2"
+  },
+  {
+    "user_id": "user_035",
+    "age": "52",
+    "price": 153.4,
+    "version": "v1"
+  },
+  {
+    "user_id": "user_036",
+    "age": 51,
+    "price": "174.61",
+    "version": "v1"
+  },
+  {
+    "user_id": "user_037",
+    "age": 37,
+    "price": 80.4,
+    "version": "v2"
+  },
+  {
+    "user_id": "user_038",
+    "age": 33,
+    "price": 45.71,
+    "version": "v1"
+  },
+  {
+    "user_id": "user_039",
+    "age": 32,
+    "price": "2.43",
+    "version": "v1"
+  },
+  {
+    "user_id": "user_040",
+    "age": "39",
+    "price": 15.1,
+    "version": "v1"
+  },
+  {
+    "user_id": "user_041",
+    "age": 26,
+    "price": 144.95,
+    "version": "v1"
+  },
+  {
+    "user_id": "user_042",
+    "age": "44",
+    "price": 38.89,
+    "version": "v2"
+  },
+  {
+    "user_id": "user_043",
+    "age": "47",
+    "price": 172.9,
+    "version": "v1"
+  },
+  {
+    "user_id": "user_044",
+    "age": 43,
+    "price": "145.91",
+    "version": "v1"
+  },
+  {
+    "user_id": "user_045",
+    "age": 52,
+    "price": "90.27",
+    "version": "v1"
+  },
+  {
+    "user_id": "user_046",
+    "age": 46,
+    "price": "161.8",
+    "version": "v1"
+  },
+  {
+    "user_id": "user_047",
+    "age": 33,
+    "price": "34.1",
+    "version": "v2"
+  },
+  {
+    "user_id": "user_048",
+    "age": 28,
+    "price": "76.42",
+    "version": "v2"
+  },
+  {
+    "user_id": "user_049",
+    "age": 45,
+    "price": 139.62,
+    "version": "v2"
+  }
+]

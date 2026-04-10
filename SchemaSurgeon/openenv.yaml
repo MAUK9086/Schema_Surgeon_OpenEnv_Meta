@@ -1,0 +1,30 @@
+spec_version: 1
+name: schema-surgeon
+version: "1.0.0"
+type: space
+runtime: fastapi
+app: server.app:app
+port: 7860
+description: >
+  An RL environment where an agent acts as an autonomous Database Reliability
+  Engineer, applying global transformations to migrate a messy NoSQL collection
+  toward a strict JSON Schema target.
+author: Team PARADOX
+tasks:
+  - id: task1
+    name: The Standardizer
+    difficulty: easy
+    description: Normalize key naming variants (uid, u_id) to user_id.
+  - id: task2
+    name: The Type-Checker
+    difficulty: medium
+    description: Fix type mismatches (age to int, price to float).
+  - id: task3
+    name: The Full Architect
+    difficulty: hard
+    description: Full migration - rename keys, fix types, flatten nested fields.
+api:
+  reset: POST /reset
+  step: POST /step
+  state: GET /state
+

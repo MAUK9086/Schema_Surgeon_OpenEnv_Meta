@@ -1,0 +1,6 @@
+# Create the file and add common exclusions
+echo "venv/" >> .gitignore
+echo ".env" >> .gitignore
+echo "__pycache__/" >> .gitignore
+echo "*.pyc" >> .gitignore
+echo ".DS_Store" >> .gitignore
