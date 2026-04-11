@@ -26,6 +26,8 @@ DEFAULT_TASK_ID: str = "task1"
 DEFAULT_MAX_STEPS: int = 30
 STAGNATION_LIMIT: int = 5
 OPENENV_FILE_NAME: str = "openenv.yaml"
+MIN_SCORE: float = 0.001
+MAX_SCORE: float = 0.999
 
 
 class SchemaSurgeonEnvironment(Environment[SchemaAction, SchemaObservation, State]):
@@ -82,6 +84,18 @@ class SchemaSurgeonEnvironment(Environment[SchemaAction, SchemaObservation, Stat
             Absolute Path to dataset file.
         """
         return self.project_root / relative_path
+
+    def _clamp_score(self, score: float) -> float:
+        """
+        Clamp a score into the required non-extreme range.
+
+        Args:
+            score: Raw score value.
+
+        Returns:
+            Clamped score in [0.001, 0.999].
+        """
+        return max(MIN_SCORE, min(MAX_SCORE, score))
 
     def _resolve_openenv_path(self) -> Path:
         """
@@ -196,7 +210,9 @@ class SchemaSurgeonEnvironment(Environment[SchemaAction, SchemaObservation, Stat
 
         self.collection = copy.deepcopy(self.original_collection)
         self.step_count = 0
-        self.last_score = calculate_score(self.collection, self.target_schema)
+        self.last_score = self._clamp_score(
+            calculate_score(self.collection, self.target_schema)
+        )
         self.stagnation_counter = 0
         self.last_action_status = "reset"
         self.done = False
@@ -246,7 +262,7 @@ class SchemaSurgeonEnvironment(Environment[SchemaAction, SchemaObservation, Stat
         if status.startswith("error"):
             self.collection = pre_action_collection
 
-        new_score = calculate_score(self.collection, self.target_schema)
+        new_score = self._clamp_score(calculate_score(self.collection, self.target_schema))
         delta_score = max(0.0, new_score - self.last_score)
         reward_value = round(delta_score * 10.0, 4)
 

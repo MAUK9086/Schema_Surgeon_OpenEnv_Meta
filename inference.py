@@ -31,6 +31,7 @@ SUCCESS_THRESHOLD: float = 0.95
 TASKS: List[str] = ["task1", "task2", "task3"]
 MAX_API_RETRIES: int = 3
 INITIAL_BACKOFF_SECONDS: float = 1.0
+MIN_SCORE: float = 0.001
 
 DEFAULT_ACTION: Dict[str, Any] = {"action_type": "terminate", "params": {}}
 
@@ -102,7 +103,7 @@ def log_end(success: bool, steps: int, score: float, rewards: List[float]) -> No
     """
     rewards_str = json.dumps([round(item, 2) for item in rewards], separators=(",", ":"))
     print(
-        f"[END] success={str(success).lower()} steps={steps} score={score:.2f} rewards={rewards_str}",
+        f"[END] success={str(success).lower()} steps={steps} score={score:.3f} rewards={rewards_str}",
         flush=True,
     )
 
@@ -276,7 +277,7 @@ async def run_task(llm_client: OpenAI, task_id: str) -> float:
         history: List[str] = []
         rewards: List[float] = []
         steps_taken = 0
-        final_score = float(observation.get("current_score", 0.0))
+        final_score = float(observation.get("current_score", MIN_SCORE))
 
         for step_number in range(1, MAX_STEPS + 1):
             action_dict = get_agent_action(llm_client, observation, history)

@@ -10,6 +10,9 @@ from typing import Any, Dict, List
 
 import jsonschema
 
+MIN_SCORE: float = 0.001
+MAX_SCORE: float = 0.999
+
 
 def calculate_score(collection: List[Dict[str, Any]], schema: Dict[str, Any]) -> float:
     """
@@ -23,10 +26,10 @@ def calculate_score(collection: List[Dict[str, Any]], schema: Dict[str, Any]) ->
         Fraction of valid documents in [0.0, 1.0].
     """
     if not collection or not isinstance(collection, list):
-        return 0.0
+        return MIN_SCORE
 
     if not schema or not isinstance(schema, dict):
-        return 0.0
+        return MIN_SCORE
 
     valid_count = 0
     evaluated_count = 0
@@ -43,6 +46,7 @@ def calculate_score(collection: List[Dict[str, Any]], schema: Dict[str, Any]) ->
             continue
 
     if evaluated_count == 0:
-        return 0.0
+        return MIN_SCORE
 
-    return round(valid_count / evaluated_count, 6)
+    raw_score = round(valid_count / evaluated_count, 6)
+    return max(MIN_SCORE, min(MAX_SCORE, raw_score))
