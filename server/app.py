@@ -10,12 +10,8 @@ from typing import Dict
 from fastapi import FastAPI
 from openenv.core.env_server.http_server import create_app
 
-try:
-    from models import SchemaAction, SchemaObservation
-    from server.SchemaSurgeon_environment import SchemaSurgeonEnvironment
-except ModuleNotFoundError:
-    from SchemaSurgeon.models import SchemaAction, SchemaObservation
-    from SchemaSurgeon.server.SchemaSurgeon_environment import SchemaSurgeonEnvironment
+from SchemaSurgeon.models import SchemaAction, SchemaObservation
+from server.SchemaSurgeon_environment import SchemaSurgeonEnvironment
 
 DEFAULT_HOST: str = "0.0.0.0"
 DEFAULT_PORT: int = 7860

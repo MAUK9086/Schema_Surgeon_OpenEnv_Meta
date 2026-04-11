@@ -17,16 +17,10 @@ import yaml
 from openenv.core.env_server.interfaces import Environment
 from openenv.core.env_server.types import State
 
-try:
-    from models import SchemaAction, SchemaObservation
-    from server.actions import dispatch_action
-    from server.grader import calculate_score
-    from server.obs import build_observation
-except ModuleNotFoundError:
-    from SchemaSurgeon.models import SchemaAction, SchemaObservation
-    from SchemaSurgeon.server.actions import dispatch_action
-    from SchemaSurgeon.server.grader import calculate_score
-    from SchemaSurgeon.server.obs import build_observation
+from SchemaSurgeon.models import SchemaAction, SchemaObservation
+from server.actions import dispatch_action
+from server.grader import calculate_score
+from server.obs import build_observation
 
 DEFAULT_TASK_ID: str = "task1"
 DEFAULT_MAX_STEPS: int = 30
@@ -61,7 +55,7 @@ class SchemaSurgeonEnvironment(Environment[SchemaAction, SchemaObservation, Stat
         self.episode_id: str = str(uuid4())
         self.task_id: str = task_id
         self.task_config: Dict[str, Any] = {}
-        self.config_root: Path = Path(__file__).resolve().parents[1]
+        self.project_root: Path = Path(__file__).resolve().parents[1]
         self.target_schema: Dict[str, Any] = {}
         self.protected_keys: List[str] = []
         self.max_steps: int = DEFAULT_MAX_STEPS
@@ -87,7 +81,7 @@ class SchemaSurgeonEnvironment(Environment[SchemaAction, SchemaObservation, Stat
         Returns:
             Absolute Path to dataset file.
         """
-        return self.config_root / relative_path
+        return self.project_root / relative_path
 
     def _resolve_openenv_path(self) -> Path:
         """
@@ -99,10 +93,10 @@ class SchemaSurgeonEnvironment(Environment[SchemaAction, SchemaObservation, Stat
         Returns:
             Absolute path to openenv.yaml.
         """
-        package_root = Path(__file__).resolve().parents[1]
+        server_folder = Path(__file__).resolve().parents[0]
         candidates = [
-            package_root / OPENENV_FILE_NAME,
-            package_root.parent / OPENENV_FILE_NAME,
+            server_folder.parent / OPENENV_FILE_NAME,
+            self.project_root / OPENENV_FILE_NAME,
         ]
 
         for candidate in candidates:
@@ -122,7 +116,6 @@ class SchemaSurgeonEnvironment(Environment[SchemaAction, SchemaObservation, Stat
             None.
         """
         openenv_path = self._resolve_openenv_path()
-        self.config_root = openenv_path.parent
         with openenv_path.open("r", encoding="utf-8") as file_obj:
             openenv_config = yaml.safe_load(file_obj) or {}
 
