@@ -42,6 +42,7 @@ def build_app() -> FastAPI:
         """
         return SchemaSurgeonEnvironment(task_id=DEFAULT_TASK_ID)
 
+    # OpenEnv create_app wires HTTP routes and the /ws WebSocket endpoint.
     app_obj = create_app(
         env_factory,
         SchemaAction,

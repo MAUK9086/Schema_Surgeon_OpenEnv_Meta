@@ -267,9 +267,9 @@ async def run_task(llm_client: OpenAI, task_id: str) -> float:
     Returns:
         Final task score in [0.0, 1.0].
     """
-    log_start(task=task_id, env="schema-surgeon", model=MODEL_NAME)
-
     async with SchemaSurgeonEnv(base_url=ENV_BASE_URL) as env_client:
+        await env_client.connect()
+        log_start(task=task_id, env="schema-surgeon", model=MODEL_NAME)
         result = await env_client.reset(task_id=task_id)
         observation = result.observation.model_dump()
 

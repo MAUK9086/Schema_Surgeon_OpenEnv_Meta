@@ -124,7 +124,6 @@ tasks:
             additionalProperties: true
       additionalProperties: true
 api:
-  reset: POST /reset
-  step: POST /step
-  state: GET /state
+  protocol: websocket
+  endpoint: /ws
 

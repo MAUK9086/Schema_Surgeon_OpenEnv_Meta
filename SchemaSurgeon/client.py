@@ -31,6 +31,20 @@ class SchemaSurgeonEnv(EnvClient[SchemaAction, SchemaObservation, State]):
     action_type = SchemaAction
     observation_type = SchemaObservation
 
+    def __init__(self, base_url: str, **kwargs: Any) -> None:
+        """
+        Initialize the WebSocket client.
+
+        Args:
+            base_url: HTTP or WS base URL for the environment server.
+            **kwargs: Additional EnvClient constructor arguments.
+
+        Returns:
+            None.
+        """
+        # EnvClient automatically converts http(s) URLs to ws(s) URLs.
+        super().__init__(base_url=base_url, **kwargs)
+
     def _step_payload(self, action: SchemaAction) -> Dict[str, Any]:
         """
         Convert action model to step payload.
