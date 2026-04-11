@@ -1,3 +1,15 @@
+---
+title: Schema Surgeon OpenEnv
+emoji: 💉
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+app_port: 7860
+pinned: false
+tags:
+- openenv
+---
+
 ````md
 # NoSQL Schema Surgeon — Full Implementation Specification
 **OpenEnv Hackathon | Team PARADOX**
