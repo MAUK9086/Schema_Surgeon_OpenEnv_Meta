@@ -61,6 +61,7 @@ class SchemaSurgeonEnvironment(Environment[SchemaAction, SchemaObservation, Stat
         self.episode_id: str = str(uuid4())
         self.task_id: str = task_id
         self.task_config: Dict[str, Any] = {}
+        self.config_root: Path = Path(__file__).resolve().parents[1]
         self.target_schema: Dict[str, Any] = {}
         self.protected_keys: List[str] = []
         self.max_steps: int = DEFAULT_MAX_STEPS
@@ -86,8 +87,29 @@ class SchemaSurgeonEnvironment(Environment[SchemaAction, SchemaObservation, Stat
         Returns:
             Absolute Path to dataset file.
         """
-        project_root = Path(__file__).resolve().parents[1]
-        return project_root / relative_path
+        return self.config_root / relative_path
+
+    def _resolve_openenv_path(self) -> Path:
+        """
+        Resolve openenv.yaml path from supported locations.
+
+        Args:
+            None.
+
+        Returns:
+            Absolute path to openenv.yaml.
+        """
+        package_root = Path(__file__).resolve().parents[1]
+        candidates = [
+            package_root / OPENENV_FILE_NAME,
+            package_root.parent / OPENENV_FILE_NAME,
+        ]
+
+        for candidate in candidates:
+            if candidate.exists():
+                return candidate
+
+        raise FileNotFoundError(f"Could not find {OPENENV_FILE_NAME} in supported locations.")
 
     def _load_task(self, task_id: str) -> None:
         """
@@ -99,8 +121,8 @@ class SchemaSurgeonEnvironment(Environment[SchemaAction, SchemaObservation, Stat
         Returns:
             None.
         """
-        project_root = Path(__file__).resolve().parents[1]
-        openenv_path = project_root / OPENENV_FILE_NAME
+        openenv_path = self._resolve_openenv_path()
+        self.config_root = openenv_path.parent
         with openenv_path.open("r", encoding="utf-8") as file_obj:
             openenv_config = yaml.safe_load(file_obj) or {}
 

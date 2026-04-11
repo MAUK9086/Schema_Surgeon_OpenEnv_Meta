@@ -22,15 +22,27 @@ def calculate_score(collection: List[Dict[str, Any]], schema: Dict[str, Any]) ->
     Returns:
         Fraction of valid documents in [0.0, 1.0].
     """
-    if not collection:
+    if not collection or not isinstance(collection, list):
+        return 0.0
+
+    if not schema or not isinstance(schema, dict):
         return 0.0
 
     valid_count = 0
+    evaluated_count = 0
+
     for doc in collection:
+        if not isinstance(doc, dict):
+            continue
+
+        evaluated_count += 1
         try:
             jsonschema.validate(instance=doc, schema=schema)
             valid_count += 1
-        except jsonschema.ValidationError:
+        except (jsonschema.ValidationError, jsonschema.SchemaError, TypeError, ValueError):
             continue
 
-    return round(valid_count / len(collection), 6)
+    if evaluated_count == 0:
+        return 0.0
+
+    return round(valid_count / evaluated_count, 6)

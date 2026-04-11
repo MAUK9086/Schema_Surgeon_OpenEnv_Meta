@@ -16,8 +16,8 @@ from openai import OpenAI
 from openai import APIConnectionError, APIError, APITimeoutError, RateLimitError
 from pydantic import ValidationError
 
-from client import SchemaSurgeonEnv
-from models import SchemaAction
+from SchemaSurgeon.client import SchemaSurgeonEnv
+from SchemaSurgeon.models import SchemaAction
 
 API_BASE_URL: str = os.environ.get("API_BASE_URL", "https://api.openai.com/v1")
 MODEL_NAME: str = os.environ.get("MODEL_NAME", "gpt-4o-mini")
@@ -54,7 +54,7 @@ def log_start(task: str, env: str, model: str) -> None:
     Returns:
         None.
     """
-    print(f'[START] task="{task}" env="{env}" model="{model}"', flush=True)
+    print(f"[START] task={task} env={env} model={model}", flush=True)
 
 
 def log_step(
@@ -77,10 +77,12 @@ def log_step(
     Returns:
         None.
     """
-    action_str = json.dumps(action)
-    error_str = f' error="{error}"' if error else ""
+    action_str = json.dumps(action, separators=(",", ":"))
+    done_str = str(done).lower()
+    error_str = "null" if error is None else str(error)
     print(
-        f"[STEP] step={step} action={action_str} reward={reward:.4f} done={done}{error_str}",
+        f"[STEP] step={step} action={action_str} reward={reward:.2f} "
+        f"done={done_str} error={error_str}",
         flush=True,
     )
 
@@ -98,9 +100,9 @@ def log_end(success: bool, steps: int, score: float, rewards: List[float]) -> No
     Returns:
         None.
     """
-    rewards_str = json.dumps([round(item, 4) for item in rewards])
+    rewards_str = json.dumps([round(item, 2) for item in rewards], separators=(",", ":"))
     print(
-        f"[END] success={str(success).lower()} steps={steps} score={score:.4f} rewards={rewards_str}",
+        f"[END] success={str(success).lower()} steps={steps} score={score:.2f} rewards={rewards_str}",
         flush=True,
     )
 
