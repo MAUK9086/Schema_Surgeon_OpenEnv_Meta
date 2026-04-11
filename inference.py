@@ -38,6 +38,9 @@ DEFAULT_ACTION: Dict[str, Any] = {"action_type": "terminate", "params": {}}
 SYSTEM_PROMPT: str = (
     "You are a Database Migration Agent. You will receive a sample of documents, "
     "global keys, a target schema, and a current score. "
+    "Your score is based on the global pass ratio across all 50 documents, "
+    "not only the 10 sample docs shown in the observation. "
+    "If last_action_status is no_op, your previous action was redundant or unnecessary. "
     "Return exactly one JSON action. "
     "Available actions are rename_and_merge, cast_type, flatten_field, delete_key, and terminate."
 )

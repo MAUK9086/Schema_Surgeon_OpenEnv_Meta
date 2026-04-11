@@ -1,6 +1,6 @@
 [
   {
-    "age": "60",
+    "age": true,
     "lifetime_value": 666.12,
     "contact_info": {
       "email": "jenniferharris@example.net",
@@ -19,10 +19,24 @@
     "uid": "user_001",
     "profile": {
       "tier": "platinum"
+    },
+    "legacy_flags": {
+      "active": true,
+      "source": "v1"
+    },
+    "audit": {
+      "events": [
+        {
+          "type": "refund",
+          "ts": "2026-04-01T12:00:00Z"
+        }
+      ]
     }
   },
   {
-    "age": 64,
+    "age": {
+      "val": 64
+    },
     "lifetime_value": "1105.99",
     "contact_info": {
       "email": "barnold@example.net",
@@ -44,7 +58,7 @@
     ],
     "uid": "user_002",
     "profile": {
-      "tier": "bronze"
+      "level": "L2"
     }
   },
   {
@@ -67,7 +81,8 @@
     "u_id": "user_003",
     "profile": {
       "tier": "silver"
-    }
+    },
+    "tier": "bronze"
   },
   {
     "age": 59,
@@ -89,6 +104,10 @@
     "u_id": "user_004",
     "profile": {
       "tier": "bronze"
+    },
+    "legacy_flags": {
+      "active": true,
+      "source": "v1"
     }
   },
   {
@@ -109,12 +128,19 @@
         "cost": 243.27
       }
     ],
-    "uid": "user_005"
+    "uid": "user_005",
+    "audit": {
+      "events": [
+        {
+          "type": "refund",
+          "ts": "2026-04-05T12:00:00Z"
+        }
+      ]
+    }
   },
   {
     "age": "68",
     "lifetime_value": 255.64,
-    "tier": "gold",
     "contact_info": {
       "email": "jessica56@example.net",
       "phone": "316.793.4060x88356"
@@ -129,7 +155,10 @@
         "cost": 136.28
       }
     ],
-    "u_id": "user_006"
+    "u_id": "user_006",
+    "profile": {
+      "tier": "gold"
+    }
   },
   {
     "age": "21",
@@ -154,11 +183,15 @@
     ],
     "uid": "user_007",
     "profile": {
-      "tier": "bronze"
+      "level": "L1"
+    },
+    "legacy_flags": {
+      "active": true,
+      "source": "v3"
     }
   },
   {
-    "age": 29,
+    "age": true,
     "lifetime_value": "448.16",
     "contact_info": {
       "email": "torresjason@example.net",
@@ -185,10 +218,13 @@
     "uid": "user_008",
     "profile": {
       "tier": "bronze"
-    }
+    },
+    "tier": "silver"
   },
   {
-    "age": "55",
+    "age": {
+      "val": 55
+    },
     "lifetime_value": 902.89,
     "contact_info": {
       "email": "emilywalker@example.org",
@@ -215,10 +251,18 @@
     "u_id": "user_009",
     "profile": {
       "tier": "gold"
+    },
+    "audit": {
+      "events": [
+        {
+          "type": "login",
+          "ts": "2026-04-09T12:00:00Z"
+        }
+      ]
     }
   },
   {
-    "age": 59,
+    "age": "59",
     "lifetime_value": "706.8",
     "contact_info": {
       "email": "jross@example.net",
@@ -241,6 +285,10 @@
     "u_id": "user_010",
     "profile": {
       "tier": "gold"
+    },
+    "legacy_flags": {
+      "active": true,
+      "source": "v1"
     }
   },
   {
@@ -296,7 +344,7 @@
     ],
     "uid": "user_011",
     "profile": {
-      "tier": "bronze"
+      "level": "L1"
     }
   },
   {
@@ -319,6 +367,19 @@
     "u_id": "user_012",
     "profile": {
       "tier": "gold"
+    },
+    "tier": "bronze",
+    "legacy_flags": {
+      "active": true,
+      "source": "v3"
+    },
+    "audit": {
+      "events": [
+        {
+          "type": "login",
+          "ts": "2026-04-13T12:00:00Z"
+        }
+      ]
     }
   },
   {
@@ -348,7 +409,7 @@
     }
   },
   {
-    "age": 31,
+    "age": true,
     "lifetime_value": "950.75",
     "contact_info": {
       "email": "kevin20@example.net",
@@ -374,7 +435,9 @@
     }
   },
   {
-    "age": "52",
+    "age": {
+      "val": 52
+    },
     "lifetime_value": 1837.7,
     "contact_info": {
       "email": "teresa83@example.com",
@@ -401,10 +464,14 @@
     "u_id": "user_015",
     "profile": {
       "tier": "gold"
+    },
+    "legacy_flags": {
+      "active": false,
+      "source": "v1"
     }
   },
   {
-    "age": 24,
+    "age": "24",
     "lifetime_value": "749.13",
     "tier": "gold",
     "contact_info": {
@@ -425,7 +492,18 @@
         "cost": 472.68
       }
     ],
-    "uid": "user_016"
+    "uid": "user_016",
+    "profile": {
+      "level": "L2"
+    },
+    "audit": {
+      "events": [
+        {
+          "type": "refund",
+          "ts": "2026-04-17T12:00:00Z"
+        }
+      ]
+    }
   },
   {
     "age": 51,
@@ -451,7 +529,8 @@
     "u_id": "user_017",
     "profile": {
       "tier": "silver"
-    }
+    },
+    "tier": "silver"
   },
   {
     "age": 72,
@@ -471,7 +550,11 @@
         "cost": 485.17
       }
     ],
-    "uid": "user_018"
+    "uid": "user_018",
+    "legacy_flags": {
+      "active": true,
+      "source": "v1"
+    }
   },
   {
     "age": "80",
@@ -523,10 +606,18 @@
     "uid": "user_020",
     "profile": {
       "tier": "bronze"
+    },
+    "audit": {
+      "events": [
+        {
+          "type": "refund",
+          "ts": "2026-04-21T12:00:00Z"
+        }
+      ]
     }
   },
   {
-    "age": 54,
+    "age": true,
     "lifetime_value": "834.48",
     "tier": "platinum",
     "contact_info": {
@@ -547,10 +638,19 @@
         "cost": 221.76
       }
     ],
-    "uid": "user_021"
+    "uid": "user_021",
+    "profile": {
+      "level": "L2"
+    },
+    "legacy_flags": {
+      "active": false,
+      "source": "v2"
+    }
   },
   {
-    "age": 32,
+    "age": {
+      "val": 32
+    },
     "lifetime_value": "1963.02",
     "contact_info": {
       "email": "austinangela@example.com",
@@ -577,10 +677,11 @@
     "uid": "user_022",
     "profile": {
       "tier": "silver"
-    }
+    },
+    "tier": "bronze"
   },
   {
-    "age": 36,
+    "age": "36",
     "lifetime_value": "609.75",
     "tier": "platinum",
     "contact_info": {
@@ -627,6 +728,18 @@
     "uid": "user_024",
     "profile": {
       "tier": "platinum"
+    },
+    "legacy_flags": {
+      "active": true,
+      "source": "v2"
+    },
+    "audit": {
+      "events": [
+        {
+          "type": "login",
+          "ts": "2026-04-25T12:00:00Z"
+        }
+      ]
     }
   },
   {
@@ -669,7 +782,10 @@
         "cost": 336.78
       }
     ],
-    "uid": "user_026"
+    "uid": "user_026",
+    "profile": {
+      "level": "L1"
+    }
   },
   {
     "age": 59,
@@ -697,10 +813,14 @@
         "cost": 487.46
       }
     ],
-    "uid": "user_027"
+    "uid": "user_027",
+    "legacy_flags": {
+      "active": false,
+      "source": "v1"
+    }
   },
   {
-    "age": 71,
+    "age": true,
     "lifetime_value": "1176.11",
     "tier": "platinum",
     "contact_info": {
@@ -725,10 +845,20 @@
         "cost": 271.59
       }
     ],
-    "uid": "user_028"
+    "uid": "user_028",
+    "audit": {
+      "events": [
+        {
+          "type": "purchase",
+          "ts": "2026-04-01T12:00:00Z"
+        }
+      ]
+    }
   },
   {
-    "age": 69,
+    "age": {
+      "val": 69
+    },
     "lifetime_value": "1147.34",
     "contact_info": {
       "email": "hferguson@example.net",
@@ -777,6 +907,10 @@
     "uid": "user_030",
     "profile": {
       "tier": "platinum"
+    },
+    "legacy_flags": {
+      "active": false,
+      "source": "v3"
     }
   },
   {
@@ -798,7 +932,7 @@
     ],
     "u_id": "user_031",
     "profile": {
-      "tier": "silver"
+      "level": "L2"
     }
   },
   {
@@ -821,6 +955,15 @@
     "u_id": "user_032",
     "profile": {
       "tier": "silver"
+    },
+    "tier": "bronze",
+    "audit": {
+      "events": [
+        {
+          "type": "refund",
+          "ts": "2026-04-05T12:00:00Z"
+        }
+      ]
     }
   },
   {
@@ -851,6 +994,10 @@
     "uid": "user_033",
     "profile": {
       "tier": "gold"
+    },
+    "legacy_flags": {
+      "active": false,
+      "source": "v3"
     }
   },
   {
@@ -880,7 +1027,7 @@
     }
   },
   {
-    "age": "75",
+    "age": true,
     "lifetime_value": 1576.51,
     "contact_info": {
       "email": "grobinson@example.net",
@@ -910,7 +1057,9 @@
     }
   },
   {
-    "age": 46,
+    "age": {
+      "val": 46
+    },
     "lifetime_value": "1125.33",
     "tier": "platinum",
     "contact_info": {
@@ -927,10 +1076,25 @@
         "cost": 469.54
       }
     ],
-    "uid": "user_036"
+    "uid": "user_036",
+    "profile": {
+      "level": "L1"
+    },
+    "legacy_flags": {
+      "active": false,
+      "source": "v1"
+    },
+    "audit": {
+      "events": [
+        {
+          "type": "refund",
+          "ts": "2026-04-09T12:00:00Z"
+        }
+      ]
+    }
   },
   {
-    "age": 66,
+    "age": "66",
     "lifetime_value": "985.86",
     "tier": "bronze",
     "contact_info": {
@@ -1007,6 +1171,10 @@
     "u_id": "user_039",
     "profile": {
       "tier": "platinum"
+    },
+    "legacy_flags": {
+      "active": false,
+      "source": "v3"
     }
   },
   {
@@ -1037,6 +1205,14 @@
     "uid": "user_040",
     "profile": {
       "tier": "gold"
+    },
+    "audit": {
+      "events": [
+        {
+          "type": "refund",
+          "ts": "2026-04-13T12:00:00Z"
+        }
+      ]
     }
   },
   {
@@ -1058,11 +1234,11 @@
     ],
     "u_id": "user_041",
     "profile": {
-      "tier": "gold"
+      "level": "L2"
     }
   },
   {
-    "age": "66",
+    "age": true,
     "lifetime_value": 1657.62,
     "contact_info": {
       "email": "robert12@example.net",
@@ -1089,10 +1265,17 @@
     "u_id": "user_042",
     "profile": {
       "tier": "platinum"
+    },
+    "tier": "bronze",
+    "legacy_flags": {
+      "active": true,
+      "source": "v1"
     }
   },
   {
-    "age": "50",
+    "age": {
+      "val": 50
+    },
     "lifetime_value": 621.9,
     "tier": "silver",
     "contact_info": {
@@ -1112,7 +1295,7 @@
     "u_id": "user_043"
   },
   {
-    "age": 80,
+    "age": "80",
     "lifetime_value": "1172.02",
     "tier": "platinum",
     "contact_info": {
@@ -1133,7 +1316,15 @@
         "cost": 336.51
       }
     ],
-    "uid": "user_044"
+    "uid": "user_044",
+    "audit": {
+      "events": [
+        {
+          "type": "refund",
+          "ts": "2026-04-17T12:00:00Z"
+        }
+      ]
+    }
   },
   {
     "age": 34,
@@ -1155,6 +1346,10 @@
     "u_id": "user_045",
     "profile": {
       "tier": "silver"
+    },
+    "legacy_flags": {
+      "active": true,
+      "source": "v2"
     }
   },
   {
@@ -1175,7 +1370,10 @@
         "cost": 272.23
       }
     ],
-    "uid": "user_046"
+    "uid": "user_046",
+    "profile": {
+      "level": "L1"
+    }
   },
   {
     "age": 36,
@@ -1197,7 +1395,8 @@
     "u_id": "user_047",
     "profile": {
       "tier": "platinum"
-    }
+    },
+    "tier": "bronze"
   },
   {
     "age": 42,
@@ -1221,10 +1420,22 @@
         "cost": 479.49
       }
     ],
-    "uid": "user_048"
+    "uid": "user_048",
+    "legacy_flags": {
+      "active": true,
+      "source": "v2"
+    },
+    "audit": {
+      "events": [
+        {
+          "type": "purchase",
+          "ts": "2026-04-21T12:00:00Z"
+        }
+      ]
+    }
   },
   {
-    "age": 77,
+    "age": true,
     "lifetime_value": "1299.16",
     "contact_info": {
       "email": "joneschristine@example.net",

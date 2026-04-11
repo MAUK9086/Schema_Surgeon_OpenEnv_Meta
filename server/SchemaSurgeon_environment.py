@@ -28,6 +28,8 @@ STAGNATION_LIMIT: int = 5
 OPENENV_FILE_NAME: str = "openenv.yaml"
 MIN_SCORE: float = 0.001
 MAX_SCORE: float = 0.999
+NO_OP_PENALTY: float = -0.1
+DESTRUCTIVE_DELETE_PENALTY: float = -0.5
 
 
 class SchemaSurgeonEnvironment(Environment[SchemaAction, SchemaObservation, State]):
@@ -244,6 +246,10 @@ class SchemaSurgeonEnvironment(Environment[SchemaAction, SchemaObservation, Stat
             return self._build_obs(reward=0.0, done=True, status="episode_already_done")
 
         self.step_count += 1
+        print(
+            f"[DEBUG] step={self.step_count} action={action.action_type} params={action.params}",
+            flush=True,
+        )
 
         if action.action_type == "terminate":
             self.done = True
@@ -266,14 +272,32 @@ class SchemaSurgeonEnvironment(Environment[SchemaAction, SchemaObservation, Stat
         delta_score = max(0.0, new_score - self.last_score)
         reward_value = round(delta_score * 10.0, 4)
 
+        if status == "no_op":
+            reward_value = round(reward_value + NO_OP_PENALTY, 4)
+
+        if action.action_type == "delete_key":
+            delete_key_name = action.params.get("key")
+            if isinstance(delete_key_name, str):
+                key_exists_anywhere = any(
+                    isinstance(doc, dict) and delete_key_name in doc for doc in self.collection
+                )
+                if delete_key_name in self.protected_keys and not key_exists_anywhere:
+                    reward_value = round(reward_value + DESTRUCTIVE_DELETE_PENALTY, 4)
+
         if delta_score <= 0.0:
             self.stagnation_counter += 1
         else:
             self.stagnation_counter = 0
 
+        print(
+            f"[DEBUG] score_prev={self.last_score:.3f} score_new={new_score:.3f} "
+            f"delta={delta_score:.3f} reward={reward_value:.3f} status={status}",
+            flush=True,
+        )
+
         self.last_score = new_score
 
-        if new_score >= 1.0:
+        if new_score >= MAX_SCORE:
             self.done = True
         elif self.stagnation_counter >= STAGNATION_LIMIT:
             self.done = True
