@@ -11,8 +11,7 @@ description: >
   toward a strict JSON Schema target.
 author: Team PARADOX
 tasks:
-  task1:
-    id: task1
+  - id: task1
     name: The Standardizer
     difficulty: easy
     data_file: server/data/task1.json
@@ -45,8 +44,7 @@ tasks:
                 type: number
             additionalProperties: true
       additionalProperties: true
-  task2:
-    id: task2
+  - id: task2
     name: The Type-Checker
     difficulty: medium
     data_file: server/data/task2.json
@@ -83,8 +81,7 @@ tasks:
                 type: number
             additionalProperties: true
       additionalProperties: true
-  task3:
-    id: task3
+  - id: task3
     name: The Full Architect
     difficulty: hard
     data_file: server/data/task3.json
@@ -126,4 +123,3 @@ tasks:
 api:
   protocol: websocket
   endpoint: /ws
-
