@@ -238,7 +238,8 @@ def get_agent_action(
             raw_text = completion.choices[0].message.content or ""
             parsed_action = parse_action_response(raw_text)
             return validate_action_dict(parsed_action)
-        except (APIConnectionError, APIError, APITimeoutError, RateLimitError):
+        except (APIConnectionError, APIError, APITimeoutError, RateLimitError) as api_err:
+            print(f"[DEBUG] API Error: {api_err}", flush=True)
             if attempt < MAX_API_RETRIES:
                 backoff_seconds = INITIAL_BACKOFF_SECONDS * (2 ** (attempt - 1))
                 print(
